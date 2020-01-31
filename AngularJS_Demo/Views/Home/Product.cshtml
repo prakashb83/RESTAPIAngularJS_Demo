@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Training List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts {
+
+    <link href="~/Content/CustomStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/AngularDemo.js"></script>
+}
+
+<div ng-app="demoModule" id="body">
+    <div ng-controller="demoCtrl">
+        <h2>AngularJS CRUD Operations with MVC5 WebAPI</h2>
+
+        <h3>List of Training</h3>
+
+        <table ng-cloak>
+            <thead>
+                <tr>
+                    <th style="display: none;">ID</th>
+                    <th>TrainingName</th>
+                    <th>StartDate</th>
+                    <th>EndDate</th>
+                  
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="items in productsData">
+                    <td hidden="hidden">{{items.Id}}</td>
+                    <td>{{items.TrainingName}}</td>
+                    <td>{{items.StartDate}}</td>
+                    <td>{{items.EndDate}}</td>
+                    <td>
+                        <button ng-model="$scope.Product" ng-click="edit(productsData[$index])">Edit</button>
+                        <button ng-click="delete($index)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        <hr />
+                    </td>
+                </tr>
+               
+            </tfoot>
+        </table>
+        <br />
+        <div style="border-top: solid 2px #282828; width: 430px; height: 10px"> </div>
+
+        <div ng-show="Training.Id != '' ">
+            <div>
+                <h2>Update Training</h2>
+            </div>
+            <div hidden="hidden">
+                <label for="id">Id</label>
+                <input type="text" data-ng-model="Product.Id" />
+            </div>
+            <div>
+                <label for="name">TrainingName</label>
+                <input type="text" data-ng-model="Product.Name" />
+            </div>
+
+            <div>
+                <label for="category">StartDate</label>
+                <input type="text" data-ng-model="Product.Category" />
+            </div>
+
+            <div>
+                <label for="price">EndDate</label>
+                <input type="text" data-ng-model="Product.Price" />
+            </div>
+            <br />
+            <div>
+                <button data-ng-click="update()">Update</button>
+                <button data-ng-click="cancel()">Cancel</button>
+            </div>
+        </div>
+
+        <div ng-hide="Product.Id != '' ">
+            <div>
+                <h2>Add New Training</h2>
+            </div>
+            <div>
+                <label for="name">TrainingName</label>
+                <input type="text" data-ng-model="Product.Name" />
+            </div>
+
+            <div>
+                <label for="category">StartDate</label>
+                <input type="text" data-ng-model="Product.Category" />
+            </div>
+
+            <div>
+                <label for="price">EndDate</label>
+                <input type="text" data-ng-model="Product.Price" />
+            </div>
+            <br />
+            <div>
+                <button data-ng-click="save()">Save</button>
+                <button data-ng-click="clear()">Clear</button>
+            </div>
+        </div>
+    </div>
+</div>
